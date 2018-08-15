@@ -25,9 +25,11 @@ Core Kotlin and the Vaadin Dependencies are all that you need to put
 a Vaadin app into a Servlet-container.
 
 Here we are using the plain **meecrowave** as Servlet-Container.
+[http://openwebbeans.apache.org/meecrowave/index.html](http://openwebbeans.apache.org/meecrowave/index.html)
+
 
 As mentioned before, there is not additional technology involved.
-No DI to wire all things together. The way used here is based on good old Properties.
+No DI to wire all things together. 
 
 But let´s start from the beginning.
 
