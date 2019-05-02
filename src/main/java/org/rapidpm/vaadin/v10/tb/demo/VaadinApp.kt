@@ -23,10 +23,10 @@ import com.vaadin.flow.component.html.Span
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
 import org.rapidpm.dependencies.core.logger.HasLogger
+import org.rapidpm.vaadin.addon.idgenerator.VaadinIDGenerator.buttonID
+import org.rapidpm.vaadin.addon.idgenerator.VaadinIDGenerator.spanID
 
 import java.lang.String.valueOf
-import org.rapidpm.vaadin.addons.framework.ComponentIDGenerator.buttonID
-import org.rapidpm.vaadin.addons.framework.ComponentIDGenerator.spanID
 
 @Route("")
 class VaadinApp : Composite<Div>(), HasLogger {
