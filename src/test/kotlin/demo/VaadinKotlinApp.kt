@@ -1,11 +1,14 @@
 /**
  * Copyright © 2017 Sven Ruppert (sven.ruppert@gmail.com)
  *
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
+ *
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,23 +16,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.rapidpm.vaadin.v10.tb.demo
+package demo
 
-
+import org.rapidpm.dependencies.core.logger.HasLogger
 import com.vaadin.flow.component.Composite
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.html.Span
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
-import org.rapidpm.dependencies.core.logger.HasLogger
-import org.rapidpm.vaadin.addon.idgenerator.VaadinIDGenerator.buttonID
-import org.rapidpm.vaadin.addon.idgenerator.VaadinIDGenerator.spanID
 
-import java.lang.String.valueOf
 
 @Route("")
-class VaadinApp : Composite<Div>(), HasLogger {
+class VaadinKotlinApp : Composite<Div>(), HasLogger {
 
   private val btnClickMe = Button("click me")
   private val lbClickCount = Span("0")
@@ -39,19 +38,17 @@ class VaadinApp : Composite<Div>(), HasLogger {
 
   init {
     btnClickMe.setId(BTN_CLICK_ME)
-    btnClickMe.addClickListener { event -> lbClickCount.text = (++clickcount).toString() }
+    btnClickMe.addClickListener({ event -> lbClickCount.setText((++clickcount).toString()) })
 
     lbClickCount.setId(LB_CLICK_COUNT)
 
-    //set the main Component
-    logger().info("setting now the main ui content..")
-    content.add(layout)
+    logger().info("and now..  setting the main content.. ")
+    getContent().add(layout)
   }
 
   companion object {
 
-    // read http://vaadin.com/testing for more infos
-    val BTN_CLICK_ME = buttonID().apply(VaadinApp::class.java, "btn-click-me")
-    val LB_CLICK_COUNT = spanID().apply(VaadinApp::class.java, "lb-click-count")
+    val BTN_CLICK_ME = "btn-click-me"
+    val LB_CLICK_COUNT = "lb-click-count"
   }
 }
