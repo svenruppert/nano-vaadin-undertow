@@ -13,8 +13,8 @@ public class VaadinJavaApp
     extends Composite<Div>
     implements HasLogger {
 
-  public static final String BTN_CLICK_ME   = "btn-click-me";
-  public static final String LB_CLICK_COUNT = "lb-click-count";
+  public static final String BTN_CLICK_ME     = "btn-click-me";
+  public static final String SPAN_CLICK_COUNT = "lb-click-count";
 
   private final Button         btnClickMe   = new Button("click me");
   private final Span           lbClickCount = new Span("0");
@@ -26,7 +26,7 @@ public class VaadinJavaApp
     btnClickMe.setId(BTN_CLICK_ME);
     btnClickMe.addClickListener(event -> lbClickCount.setText(String.valueOf(++clickcount)));
 
-    lbClickCount.setId(LB_CLICK_COUNT);
+    lbClickCount.setId(SPAN_CLICK_COUNT);
 
     logger().info("and now..  setting the main content.. ");
     getContent().add(layout);

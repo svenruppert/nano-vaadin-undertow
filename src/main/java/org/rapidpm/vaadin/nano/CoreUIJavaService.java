@@ -72,4 +72,8 @@ public abstract class CoreUIJavaService
   }
 
   public abstract Set<Class<?>> setOfRouteAnnotatedClasses();
+
+  public void shutdown() {
+    undertow.ifPresent(Undertow::stop);
+  }
 }

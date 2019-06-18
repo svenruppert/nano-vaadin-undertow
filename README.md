@@ -98,6 +98,20 @@ class VaadinApp : Composite<Div>(), HasLogger {
 
 
 ## Kotlin, Vaadin and TDD
+
+For UI Tests I am using Selenoid. You will find this on github at []()
+
+After the selenoid node is (locally) started you could check the status 
+at [http://localhost:4444/status](http://localhost:4444/status).
+
+Default location for videos when installed with cm is ~/.aerokube/selenoid/video or C:\Users\<user>\.aerokube\selenoid\video.
+
+
+
+
+
+
+
 For testing the Vaadin app, the Open Source project Testbench-NG is used.
 This is a jUnit5 / Webdriver - manager AddOn for the Selenium and Testbench projects.
 To read more about it, plase have a look at 

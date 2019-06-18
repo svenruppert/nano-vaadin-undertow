@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-dependencies</artifactId>
-    <version>04.00.17-RPM</version>
+    <version>04.00.18-RPM</version>
   </parent>
 
 
@@ -89,9 +89,9 @@
     <undertow.version>2.0.21.Final</undertow.version>
 
     <!--Kotlin-->
-    <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
-    <kotlin.version>1.3.31</kotlin.version>
-    <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+<!--    <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>-->
+<!--    <kotlin.version>1.3.31</kotlin.version>-->
+<!--    <kotlin.compiler.incremental>true</kotlin.compiler.incremental>-->
   </properties>
 
   <repositories>
@@ -130,7 +130,6 @@
 
   <dependencies>
     <!--Infrastructure-->
-    <!--Infrastructure-->
     <dependency>
       <groupId>io.undertow</groupId>
       <artifactId>undertow-core</artifactId>
@@ -148,6 +147,7 @@
       <artifactId>undertow-websockets-jsr</artifactId>
       <version>${undertow.version}</version>
     </dependency>
+
 
 
     <!--Vaadin -->
@@ -211,6 +211,12 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-testbench</artifactId>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
 
@@ -231,7 +237,7 @@
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
-                    <Main-Class>org.rapidpm.vaadin.nano.CoreUIKotlinService</Main-Class>
+                    <Main-Class>demo.StartupJava</Main-Class>
                   </manifestEntries>
                 </transformer>
               </transformers>
