@@ -10,9 +10,6 @@ public class StartupJava {
 
   private StartupJava() {
   }
-
-
-
   public static void main(String[] args) {
       new CoreUIJavaService() {
         @Override
