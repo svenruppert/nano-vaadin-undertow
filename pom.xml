@@ -76,11 +76,16 @@
   </licenses>
 
   <properties>
-    <compiler.target>8</compiler.target>
+    <compiler.target>11</compiler.target>
     <!--technical-->
-    <!--    <maven.compiler.release>${compiler.target}</maven.compiler.release>-->
+    <maven.compiler.release>${compiler.target}</maven.compiler.release>
     <maven.compiler.target>${compiler.target}</maven.compiler.target>
     <maven.compiler.source>${compiler.target}</maven.compiler.source>
+
+    <!--Kotlin-->
+    <kotlin.compiler.jvmTarget>${compiler.target}</kotlin.compiler.jvmTarget>
+    <!--    <kotlin.version>1.3.40</kotlin.version>-->
+    <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -93,11 +98,6 @@
     <frontend-maven-plugin.npmVersion>6.9.0</frontend-maven-plugin.npmVersion>
 
     <undertow.version>2.0.21.Final</undertow.version>
-
-    <!--Kotlin-->
-    <kotlin.compiler.jvmTarget>${compiler.target}</kotlin.compiler.jvmTarget>
-<!--    <kotlin.version>1.3.40</kotlin.version>-->
-    <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
   </properties>
 
   <repositories>
@@ -188,7 +188,6 @@
     </dependency>
 
 
-
     <!--Vaadin -->
     <dependency>
       <groupId>com.vaadin</groupId>
@@ -223,11 +222,11 @@
       </exclusions>
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>com.github.vaadin-developer.id-generator-for-flow</groupId>-->
-<!--      <artifactId>id-generator-for-flow-impl</artifactId>-->
-<!--      <version>00.08.00-RPM</version>-->
-<!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>com.github.vaadin-developer.id-generator-for-flow</groupId>-->
+    <!--      <artifactId>id-generator-for-flow-impl</artifactId>-->
+    <!--      <version>00.08.00-RPM</version>-->
+    <!--    </dependency>-->
 
     <!--For TestUI only-->
     <dependency>
