@@ -18,6 +18,7 @@
  */
 package org.rapidpm.vaadin.nano
 
+import com.vaadin.flow.router.Route
 import com.vaadin.flow.server.startup.RouteRegistryInitializer
 import com.vaadin.flow.server.startup.ServletDeployer
 import io.undertow.Handlers.path
@@ -26,53 +27,93 @@ import io.undertow.Undertow
 import io.undertow.server.handlers.resource.ClassPathResourceManager
 import io.undertow.servlet.Servlets
 import io.undertow.servlet.api.ServletContainerInitializerInfo
+import org.apache.commons.cli.DefaultParser
+import org.apache.commons.cli.Options
+import org.apache.commons.cli.ParseException
 import org.rapidpm.dependencies.core.logger.HasLogger
 import org.rapidpm.frp.model.Result.failure
 import org.rapidpm.frp.model.Result.success
+import org.reflections8.Reflections
 import java.lang.Integer.valueOf
 import java.lang.System.getProperty
+import java.lang.System.setProperty
+import java.util.function.Consumer
+import java.util.stream.Collectors
 import javax.servlet.ServletException
 
 /**
  *
  */
-abstract class CoreUIKotlinService : HasLogger {
+class CoreUIKotlinService : HasLogger {
 
-  var undertow : org.rapidpm.frp.model.Result<Undertow> = failure("not initialised so far")
+  val CORE_UI_SERVER_HOST_DEFAULT = "0.0.0.0"
+  val CORE_UI_SERVER_PORT_DEFAULT = "8899"
+
+  val CORE_UI_SERVER_HOST = "core-ui-server-host"
+  val CORE_UI_SERVER_PORT = "core-ui-server-port"
+  val CORE_UI_BASE_PKG = "core-ui-base-package"
+
+  val CLI_HOST = "host"
+  val CLI_PORT = "port"
+  val CLI_BASE_PKG = "pkg"
+
+  val DEFAULT_BASE_PKG = "org.rapidpm"
+
+
+  var undertow = failure<Undertow>("not initialised so far")
+
+  @Throws(ParseException::class)
+  fun startup(args: Array<String>) {
+    val options = Options()
+    options.addOption(CLI_HOST, true, "host to use")
+    options.addOption(CLI_PORT, true, "port to use")
+    options.addOption(CLI_BASE_PKG, true, "base package to use to scan for Route annotated classes")
+
+    val parser = DefaultParser()
+    val cmd = parser.parse(options, args)
+
+    if (cmd.hasOption(CLI_HOST)) {
+      setProperty(CORE_UI_SERVER_HOST, cmd.getOptionValue(CLI_HOST))
+    }
+    if (cmd.hasOption(CLI_PORT)) {
+      setProperty(CORE_UI_SERVER_PORT, cmd.getOptionValue(CLI_PORT))
+    }
+    if (cmd.hasOption(CLI_BASE_PKG)) {
+      setProperty(CORE_UI_BASE_PKG, cmd.getOptionValue(CLI_BASE_PKG))
+    }
+    startup()
+  }
+
 
   fun startup() {
-    val classLoader = CoreUIKotlinService::class.java.getClassLoader()
+    val classLoader = CoreUIJavaService::class.java.classLoader
     val servletBuilder = Servlets.deployment()
         .setClassLoader(classLoader)
         .setContextPath("/")
         .setDeploymentName("ROOT.war")
         .setDefaultEncoding("UTF-8")
-        .setResourceManager(ClassPathResourceManager(classLoader, "META-INF/resources/"))
+        .setResourceManager(
+            ClassPathResourceManager(classLoader, "META-INF/resources/"))
         .addServletContainerInitializer(
             ServletContainerInitializerInfo(RouteRegistryInitializer::class.java,
-                setOfRouteAnnotatedClasses())
-        )
+                setOfRouteAnnotatedClasses()))
         .addListener(Servlets.listener(ServletDeployer::class.java))
 
-    val manager = Servlets
-        .defaultContainer()
+    val manager = Servlets.defaultContainer()
         .addDeployment(servletBuilder)
     manager.deploy()
 
     try {
-      val path = path(redirect("/"))
-          .addPrefixPath("/", manager.start())
+      val path = path(redirect("/")).addPrefixPath("/", manager.start())
       val u = Undertow.builder()
-          .addHttpListener(valueOf(getProperty(CORE_UI_SERVER_PORT,
-              CORE_UI_SERVER_PORT_DEFAULT)),
-              getProperty(CORE_UI_SERVER_HOST,
-                  CORE_UI_SERVER_HOST_DEFAULT)
-          )
+          .addHttpListener(valueOf(getProperty(CORE_UI_SERVER_PORT, CORE_UI_SERVER_PORT_DEFAULT)),
+              getProperty(CORE_UI_SERVER_HOST, CORE_UI_SERVER_HOST_DEFAULT))
           .setHandler(path)
           .build()
       u.start()
 
-      u.getListenerInfo().forEach({ e -> logger().info(e.toString()) })
+      u.listenerInfo
+          .forEach { e -> logger().info(e.toString()) }
 
       undertow = success(u)
     } catch (e: ServletException) {
@@ -82,14 +123,17 @@ abstract class CoreUIKotlinService : HasLogger {
 
   }
 
-  abstract fun setOfRouteAnnotatedClasses(): Set<Class<*>>
+  private fun setOfRouteAnnotatedClasses(): Set<Class<*>> {
+    return Reflections(getProperty(CORE_UI_BASE_PKG, DEFAULT_BASE_PKG)).getTypesAnnotatedWith(Route::class.java)
+        .stream()
+        .peek { cls ->
+          logger().info(
+              "found Route annotate class " + cls.getName())
+        }
+        .collect(Collectors.toSet<Class<*>>())
+  }
 
-  companion object {
-
-    val CORE_UI_SERVER_HOST_DEFAULT = "0.0.0.0"
-    val CORE_UI_SERVER_PORT_DEFAULT = "8899"
-
-    val CORE_UI_SERVER_HOST = "core-ui-server-host"
-    val CORE_UI_SERVER_PORT = "core-ui-server-port"
+  fun shutdown() {
+    undertow.ifPresent({ it.stop() })
   }
 }

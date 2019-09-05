@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package demo
+package org.rapidpm.vaadin.nano
 
 import org.rapidpm.dependencies.core.logger.HasLogger
 import com.vaadin.flow.component.Composite
