@@ -27,6 +27,7 @@ import io.undertow.Undertow
 import io.undertow.server.handlers.resource.ClassPathResourceManager
 import io.undertow.servlet.Servlets
 import io.undertow.servlet.api.ServletContainerInitializerInfo
+import io.undertow.websockets.jsr.WebSocketDeploymentInfo
 import org.apache.commons.cli.DefaultParser
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.ParseException
@@ -98,6 +99,10 @@ class CoreUIKotlinService : HasLogger {
             ServletContainerInitializerInfo(RouteRegistryInitializer::class.java,
                 setOfRouteAnnotatedClasses()))
         .addListener(Servlets.listener(ServletDeployer::class.java))
+
+
+    val webSocketDeploymentInfo = WebSocketDeploymentInfo()
+    servletBuilder.addServletContextAttribute(WebSocketDeploymentInfo.ATTRIBUTE_NAME, webSocketDeploymentInfo)
 
     val manager = Servlets.defaultContainer()
         .addDeployment(servletBuilder)

@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-vaadin-dependencies-v14</artifactId>
-    <version>04.01.10-RPM</version>
+    <version>04.01.15-RPM</version>
   </parent>
 
 
@@ -101,14 +101,7 @@
 
   <dependencyManagement>
     <dependencies>
-      <!--Vaadin -->
-      <dependency>
-        <groupId>com.vaadin</groupId>
-        <artifactId>vaadin-bom</artifactId>
-        <version>${vaadin-v14.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -130,6 +123,20 @@
       <groupId>io.undertow</groupId>
       <artifactId>undertow-websockets-jsr</artifactId>
       <version>${undertow.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-lumo-theme</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-button-flow</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-ordered-layout-flow</artifactId>
     </dependency>
 
     <!--    <dependency>-->

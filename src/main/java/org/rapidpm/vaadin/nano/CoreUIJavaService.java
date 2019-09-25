@@ -10,6 +10,7 @@ import io.undertow.servlet.Servlets;
 import io.undertow.servlet.api.DeploymentInfo;
 import io.undertow.servlet.api.DeploymentManager;
 import io.undertow.servlet.api.ServletContainerInitializerInfo;
+import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
@@ -19,12 +20,12 @@ import org.rapidpm.frp.model.Result;
 import org.reflections8.Reflections;
 
 import javax.servlet.ServletException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static io.undertow.Handlers.path;
 import static io.undertow.Handlers.redirect;
-import static java.lang.Integer.valueOf;
 import static java.lang.System.getProperty;
 import static java.lang.System.setProperty;
 import static java.util.stream.Collectors.toSet;
@@ -72,7 +73,8 @@ public class CoreUIJavaService
 
 
   public void startup() {
-    final ClassLoader classLoader = CoreUIJavaService.class.getClassLoader();
+    final LocalDateTime start       = LocalDateTime.now();
+    final ClassLoader   classLoader = CoreUIJavaService.class.getClassLoader();
     DeploymentInfo servletBuilder = Servlets.deployment()
                                             .setClassLoader(classLoader)
                                             .setContextPath("/")
@@ -85,16 +87,24 @@ public class CoreUIJavaService
                                                                                     setOfRouteAnnotatedClasses()))
                                             .addListener(Servlets.listener(ServletDeployer.class));
 
+
+    final WebSocketDeploymentInfo webSocketDeploymentInfo = new WebSocketDeploymentInfo();
+    servletBuilder.addServletContextAttribute(WebSocketDeploymentInfo.ATTRIBUTE_NAME, webSocketDeploymentInfo);
+
     final DeploymentManager manager = Servlets.defaultContainer()
                                               .addDeployment(servletBuilder);
     manager.deploy();
 
     try {
-      PathHandler path = path(redirect("/")).addPrefixPath("/", manager.start());
+      PathHandler path = path(redirect("/"))
+          .addPrefixPath("/", manager.start());
       Undertow u = Undertow.builder()
                            .addHttpListener(
-                               Integer.parseInt(getProperty(CORE_UI_SERVER_PORT, CORE_UI_SERVER_PORT_DEFAULT)),
-                               getProperty(CORE_UI_SERVER_HOST, CORE_UI_SERVER_HOST_DEFAULT))
+                               Integer.parseInt(getProperty(
+                                   CORE_UI_SERVER_PORT,
+                                   CORE_UI_SERVER_PORT_DEFAULT)),
+                               getProperty(CORE_UI_SERVER_HOST,
+                                           CORE_UI_SERVER_HOST_DEFAULT))
                            .setHandler(path)
                            .build();
       u.start();
@@ -107,13 +117,16 @@ public class CoreUIJavaService
       e.printStackTrace();
       undertow = failure(e.getMessage());
     }
+    final LocalDateTime stop = LocalDateTime.now();
+    logger().info("Server startup Time " + ChronoUnit.MILLIS.between(start, stop) + " [ms]");
   }
 
   private Set<Class<?>> setOfRouteAnnotatedClasses() {
     return new Reflections(getProperty(CORE_UI_BASE_PKG, DEFAULT_BASE_PKG)).getTypesAnnotatedWith(Route.class)
                                                                            .stream()
                                                                            .peek(cls -> logger().info(
-                                                                            "found Route annotate class " + cls.getName()))
+                                                                               "found Route annotate class "
+                                                                               + cls.getName()))
                                                                            .collect(toSet());
   }
 

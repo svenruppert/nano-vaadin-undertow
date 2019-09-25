@@ -23,6 +23,8 @@ To support the Heroku pipeline we need a few preparations.
 1) add a file **settings.xml** to configure the maven build process
 
 
+## THIS README is Work In Progress
+
 ## target of this project
 The target of this project is a minimal rampup time for a first hello world.
 Why we need one more HelloWorld? Well, the answer is quite easy. 
@@ -39,9 +41,7 @@ This project will not use any additional maven plugin or technology.
 Core Kotlin and the Vaadin Dependencies are all that you need to put 
 a Vaadin app into a Servlet-container.
 
-Here we are using the plain **meecrowave** as Servlet-Container.
-[http://openwebbeans.apache.org/meecrowave/index.html](http://openwebbeans.apache.org/meecrowave/index.html)
-
+Here we are using the plain **undertow** as Servlet-Container.
 
 As mentioned before, there is not additional technology involved.
 No DI to wire all things together. 
@@ -51,28 +51,47 @@ But let´s start from the beginning.
 ## Start the Servlet-Container (Kotlin)
 The class ```BasicTestUIRunner``` will ramp up the Container.
 
-Here all the basic stuff is done. The start will init. a ServletContainer at port **8080**.
-If you want to use a random port, use ```randomHttpPort()``` instead of ```httpPort = 8080```
+Here all the basic stuff is done. The start will init. a ServletContainer at port **8899**.
 The WebApp will deployed as **ROOT.war**. 
 
 ```kotlin
-object BasicTestUIRunner {
+  public void startup() {
+    final ClassLoader classLoader = CoreUIJavaService.class.getClassLoader();
+    DeploymentInfo servletBuilder = Servlets.deployment()
+                                            .setClassLoader(classLoader)
+                                            .setContextPath("/")
+                                            .setDeploymentName("ROOT.war")
+                                            .setDefaultEncoding("UTF-8")
+                                            .setResourceManager(
+                                                new ClassPathResourceManager(classLoader, "META-INF/resources/"))
+                                            .addServletContainerInitializer(
+                                                new ServletContainerInitializerInfo(RouteRegistryInitializer.class,
+                                                                                    setOfRouteAnnotatedClasses()))
+                                            .addListener(Servlets.listener(ServletDeployer.class));
 
-  @JvmStatic
-  fun main(args: Array<String>) {
-    Meecrowave(object : Meecrowave.Builder() {
-      init {
-        //        randomHttpPort();
-        httpPort = 8080
-        isTomcatScanning = true
-        isTomcatAutoSetup = false
-        isHttp2 = true
-      }
-    })
-        .bake()
-        .await()
+    final DeploymentManager manager = Servlets.defaultContainer()
+                                              .addDeployment(servletBuilder);
+    manager.deploy();
+
+    try {
+      PathHandler path = path(redirect("/")).addPrefixPath("/", manager.start());
+      Undertow u = Undertow.builder()
+                           .addHttpListener(
+                               Integer.parseInt(getProperty(CORE_UI_SERVER_PORT, CORE_UI_SERVER_PORT_DEFAULT)),
+                               getProperty(CORE_UI_SERVER_HOST, CORE_UI_SERVER_HOST_DEFAULT))
+                           .setHandler(path)
+                           .build();
+      u.start();
+
+      u.getListenerInfo()
+       .forEach(e -> logger().info(e.toString()));
+
+      undertow = success(u);
+    } catch (ServletException e) {
+      e.printStackTrace();
+      undertow = failure(e.getMessage());
+    }
   }
-}
 ```
 
 After this you can start the app invoking the main-method.
