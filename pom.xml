@@ -139,6 +139,14 @@
       <artifactId>vaadin-ordered-layout-flow</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-text-field-flow</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-combo-box-flow</artifactId>
+    </dependency>
     <!--    <dependency>-->
     <!--      <groupId>com.github.vaadin-developer.id-generator-for-flow</groupId>-->
     <!--      <artifactId>id-generator-for-flow-impl</artifactId>-->
@@ -190,7 +198,7 @@
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
-<!--                    <Main-Class>demo.StartupJava</Main-Class>-->
+                    <!--                    <Main-Class>demo.StartupJava</Main-Class>-->
                     <Main-Class>demo.StartupKotlinKt</Main-Class>
                   </manifestEntries>
                 </transformer>
