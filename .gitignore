@@ -6,6 +6,7 @@ webpack.config.js
 webpack.generated.js
 
 
+
 *.iml
 .idea/*
 _data/webdrivers/*
