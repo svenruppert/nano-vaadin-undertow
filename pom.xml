@@ -93,17 +93,7 @@
     <undertow.version>2.0.26.Final</undertow.version>
   </properties>
 
-  <!-- Just to disable any accidential deployment to maven.central -->
-  <distributionManagement>
-    <repository>
-      <id>localhost</id>
-      <url>file://${basedir}/target/repo/</url>
-    </repository>
-    <snapshotRepository>
-      <id>localhost</id>
-      <url>file://${basedir}/target/snapshot-repo/</url>
-    </snapshotRepository>
-  </distributionManagement>
+
 
 
   <dependencyManagement>
