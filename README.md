@@ -1,8 +1,8 @@
 
-<center>
+<div style="text-align: center;">
 <a href="https://vaadin.com">
  <img src="https://vaadin.com/images/hero-reindeer.svg" width="200" height="200" /></a>
-</center>
+</div>
 
 
 # Nano Vaadin - Ramp up in a second.
