@@ -23,6 +23,18 @@ To support the Heroku pipeline we need a few preparations.
 1) add a file **settings.xml** to configure the maven build process
 
 
+## running the demo
+If you want to see a demo that is using this repo, or better, the module with the demo app
+you can have a view at the instances that are running on Heroku.
+
+The master branch is deploeyd at [https://nano-vaadin-undertow.herokuapp.com/](https://nano-vaadin-undertow.herokuapp.com/)
+and the develop branch is deployed at [https://nano-vaadin-undertow-develop.herokuapp.com/](https://nano-vaadin-undertow-develop.herokuapp.com/)
+
+
+
+
+
+
 ## THIS README is Work In Progress
 
 ## target of this project
