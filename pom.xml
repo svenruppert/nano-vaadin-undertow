@@ -24,13 +24,13 @@
   <parent>
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-vaadin-dependencies-v14</artifactId>
-    <version>04.03.00-RPM</version>
+    <version>04.03.01-RPM</version>
   </parent>
 
 
   <groupId>org.rapidpm.vaadin</groupId>
   <artifactId>nano-vaadin-undertow-parent</artifactId>
-  <version>01.00.00-RPM</version>
+  <version>01.00.01-RPM</version>
 
   <packaging>pom</packaging>
 
@@ -93,17 +93,7 @@
     <undertow.version>2.0.26.Final</undertow.version>
   </properties>
 
-  <!-- Just to disable any accidential deployment to maven.central -->
-  <distributionManagement>
-    <repository>
-      <id>localhost</id>
-      <url>file://${basedir}/target/repo/</url>
-    </repository>
-    <snapshotRepository>
-      <id>localhost</id>
-      <url>file://${basedir}/target/snapshot-repo/</url>
-    </snapshotRepository>
-  </distributionManagement>
+
 
 
   <dependencyManagement>
