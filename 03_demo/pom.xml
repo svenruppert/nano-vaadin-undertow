@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright © 2013 Sven Ruppert (sven.ruppert@gmail.com)
+    Copyright © 2017 Sven Ruppert (sven.ruppert@gmail.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.rapidpm.vaadin</groupId>
     <artifactId>nano-vaadin-undertow-parent</artifactId>
-    <version>00.07.05-RPM-SNAPSHOT</version>
+    <version>01.00.00-RPM</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -47,7 +47,7 @@
     <dependency>
       <groupId>org.rapidpm.vaadin</groupId>
       <artifactId>nano-vaadin-undertow</artifactId>
-      <version>00.07.05-RPM-SNAPSHOT</version>
+      <version>01.00.00-RPM</version>
     </dependency>
     <!--For Core Vaadin Components-->
     <dependency>
