@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.rapidpm.vaadin</groupId>
     <artifactId>nano-vaadin-undertow-parent</artifactId>
-    <version>01.00.02-RPM-SNAPSHOT</version>
+    <version>01.00.02-RPM</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -47,7 +47,7 @@
     <dependency>
       <groupId>org.rapidpm.vaadin</groupId>
       <artifactId>nano-vaadin-undertow</artifactId>
-      <version>01.00.02-RPM-SNAPSHOT</version>
+      <version>01.00.02-RPM</version>
     </dependency>
     <!--For Core Vaadin Components-->
     <dependency>
