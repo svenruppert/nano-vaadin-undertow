@@ -139,7 +139,7 @@ public class CoreUIServiceJava
     logger().info("Server startup Time " + ChronoUnit.MILLIS.between(start, stop) + " [ms]");
   }
 
-  private Set<Class<?>> setOfRouteAnnotatedClasses() {
+  public Set<Class<?>> setOfRouteAnnotatedClasses() {
     return new Reflections(getProperty(CORE_UI_BASE_PKG, DEFAULT_BASE_PKG)).getTypesAnnotatedWith(Route.class)
                                                                            .stream()
                                                                            .peek(cls -> logger().info(
