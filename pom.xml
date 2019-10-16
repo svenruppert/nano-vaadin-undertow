@@ -24,13 +24,13 @@
   <parent>
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-vaadin-dependencies-v14</artifactId>
-    <version>04.03.01-RPM</version>
+    <version>04.04.00-RPM</version>
   </parent>
 
 
   <groupId>org.rapidpm.vaadin</groupId>
   <artifactId>nano-vaadin-undertow-parent</artifactId>
-  <version>01.00.01-RPM</version>
+  <version>01.00.02-RPM</version>
 
   <packaging>pom</packaging>
 
@@ -83,6 +83,9 @@
   </modules>
 
   <properties>
+<!--    <deploy-repo-url></deploy-repo-url>-->
+<!--    <deploy-repo-snapshots-url></deploy-repo-snapshots-url>-->
+
     <jdk.version>1.8</jdk.version>
 
     <!--Vaadin-->
