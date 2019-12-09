@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-vaadin-dependencies-v14</artifactId>
-    <version>04.04.00-RPM</version>
+    <version>04.05.02-RPM</version>
   </parent>
 
 
@@ -89,11 +89,12 @@
     <jdk.version>1.8</jdk.version>
 
     <!--Vaadin-->
+<!--    <vaadin-v14.version>14.0.11</vaadin-v14.version>-->
     <vaadin-productionMode>false</vaadin-productionMode>
     <vaadin-install-nodejs>true</vaadin-install-nodejs>
     <!--    <frontend-maven-plugin.installDirectory>_data</frontend-maven-plugin.installDirectory>-->
 
-    <undertow.version>2.0.26.Final</undertow.version>
+    <undertow.version>2.0.28.Final</undertow.version>
   </properties>
 
 

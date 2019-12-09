@@ -15,17 +15,18 @@
  */
 package org.rapidpm.vaadin.nano.demo.views
 
+import com.github.appreciated.css.grid.GridLayoutComponent
 import com.github.appreciated.css.grid.GridLayoutComponent.AutoFlow.ROW_DENSE
-import com.github.appreciated.css.grid.GridLayoutComponent.Overflow.AUTO
+import com.github.appreciated.css.grid.sizes.Repeat.RepeatMode.AUTO_FIT
 import com.github.appreciated.css.grid.sizes.Flex
 import com.github.appreciated.css.grid.sizes.Length
 import com.github.appreciated.css.grid.sizes.MinMax
-import com.github.appreciated.css.grid.sizes.Repeat.RepeatMode.AUTO_FIT
 import com.github.appreciated.layout.FlexibleGridLayout
 import com.vaadin.flow.component.Composite
 import com.vaadin.flow.component.dependency.CssImport
 import com.vaadin.flow.component.dependency.JsModule
 import com.vaadin.flow.component.html.Div
+import com.vaadin.flow.component.html.Span
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.router.RouteAlias
@@ -49,11 +50,12 @@ class DashboardView : Composite<Div>(), HasLogger {
       .withPadding(true)
       .withSpacing(true)
       .withAutoFlow(ROW_DENSE)
-      .withOverflow(AUTO)
+      .withOverflow(GridLayoutComponent.Overflow.AUTO)
 
   init {
     setId("dashboard-view")
 
+    content.add(Span("HEllo Span"))
     content.add(gridLayout)
     gridLayout.withItems(
         ServiceHealtCard(),

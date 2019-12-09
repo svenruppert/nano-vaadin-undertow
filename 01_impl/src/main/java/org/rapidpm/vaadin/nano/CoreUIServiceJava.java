@@ -66,6 +66,8 @@ public class CoreUIServiceJava
   public Result<Undertow> undertow = failure("not initialised so far");
 
   public static void main(String[] args) throws ParseException {
+    //System.setProperty("vaadin.productionMode ", "true");
+
     new CoreUIServiceJava().executeCLI(args).startup();
   }
 
