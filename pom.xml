@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-vaadin-dependencies-v14</artifactId>
-    <version>04.05.03-RPM</version>
+    <version>04.06.00-RPM</version>
   </parent>
 
   <groupId>org.rapidpm.vaadin</groupId>
@@ -82,8 +82,8 @@
   </modules>
 
   <properties>
-<!--    <deploy-repo-url></deploy-repo-url>-->
-<!--    <deploy-repo-snapshots-url></deploy-repo-snapshots-url>-->
+    <!--    <deploy-repo-url></deploy-repo-url>-->
+    <!--    <deploy-repo-snapshots-url></deploy-repo-snapshots-url>-->
     <jdk.version>1.8</jdk.version>
     <!--Vaadin-->
     <vaadin-productionMode>false</vaadin-productionMode>
@@ -93,15 +93,33 @@
   </properties>
 
 
-
-
-  <dependencyManagement>
-    <dependencies>
-
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
+    <!--    exclude from jar-->
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>flow-server</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>flow-push</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>flow-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>flow-html-components</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>flow-data</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <!--Infrastructure-->
     <dependency>
       <groupId>io.undertow</groupId>
@@ -141,5 +159,31 @@
       <artifactId>slf4j-simple</artifactId>
     </dependency>
   </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.vaadin</groupId>
+        <artifactId>vaadin-maven-plugin</artifactId>
+        <version>${vaadin-v14.version}</version>
+        <executions>
+          <execution>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
 
 </project>
