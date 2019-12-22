@@ -82,13 +82,10 @@
   </modules>
 
   <properties>
-    <!--    <deploy-repo-url></deploy-repo-url>-->
-    <!--    <deploy-repo-snapshots-url></deploy-repo-snapshots-url>-->
     <jdk.version>1.8</jdk.version>
     <!--Vaadin-->
     <vaadin-productionMode>false</vaadin-productionMode>
     <vaadin-install-nodejs>true</vaadin-install-nodejs>
-
     <undertow.version>2.0.28.Final</undertow.version>
   </properties>
 
