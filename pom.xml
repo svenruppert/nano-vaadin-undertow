@@ -29,7 +29,7 @@
 
   <groupId>org.rapidpm.vaadin</groupId>
   <artifactId>nano-vaadin-undertow-parent</artifactId>
-  <version>01.00.04-RPM-SNAPSHOT</version>
+  <version>01.00.04-RPM</version>
 
   <packaging>pom</packaging>
 
@@ -82,13 +82,10 @@
   </modules>
 
   <properties>
-    <!--    <deploy-repo-url></deploy-repo-url>-->
-    <!--    <deploy-repo-snapshots-url></deploy-repo-snapshots-url>-->
     <jdk.version>1.8</jdk.version>
     <!--Vaadin-->
     <vaadin-productionMode>false</vaadin-productionMode>
     <vaadin-install-nodejs>true</vaadin-install-nodejs>
-
     <undertow.version>2.0.28.Final</undertow.version>
   </properties>
 
