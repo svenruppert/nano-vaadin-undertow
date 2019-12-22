@@ -16,6 +16,7 @@
 package org.rapidpm.vaadin.nano;
 
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.Constants;
 import com.vaadin.flow.server.startup.RouteRegistryInitializer;
 import com.vaadin.flow.server.startup.ServletDeployer;
 import io.undertow.Undertow;
@@ -66,7 +67,9 @@ public class CoreUIServiceJava
   public Result<Undertow> undertow = failure("not initialised so far");
 
   public static void main(String[] args) throws ParseException {
-    //System.setProperty("vaadin.productionMode ", "true");
+    System.setProperty(Constants.SERVLET_PARAMETER_ENABLE_DEV_SERVER, "false");
+    System.setProperty("vaadin.compatibilityMode", "false");
+    System.setProperty("vaadin.productionMode", "true");
 
     new CoreUIServiceJava().executeCLI(args).startup();
   }
