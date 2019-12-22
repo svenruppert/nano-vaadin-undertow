@@ -29,7 +29,7 @@
 
   <groupId>org.rapidpm.vaadin</groupId>
   <artifactId>nano-vaadin-undertow-parent</artifactId>
-  <version>01.00.04-RPM</version>
+  <version>01.00.05-RPM-SNAPSHOT</version>
 
   <packaging>pom</packaging>
 
