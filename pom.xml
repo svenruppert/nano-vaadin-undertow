@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-vaadin-dependencies-v14</artifactId>
-    <version>04.06.00-RPM</version>
+    <version>04.06.01-RPM-SNAPSHOT</version>
   </parent>
 
   <groupId>org.rapidpm.vaadin</groupId>
@@ -38,15 +38,15 @@
     <name>Vaadin</name>
     <url>http://www.vaadin.com</url>
   </organization>
-  <url>https://github.com/vaadin-developer/nano-vaadin</url>
+  <url>https://github.com/Nano-Vaadin-Demos/nano-vaadin</url>
 
   <scm>
-    <url>https://github.com/vaadin-developer/nano-vaadin</url>
+    <url>https://github.com/Nano-Vaadin-Demos/nano-vaadin</url>
     <connection>
-      scm:git:https://github.com/vaadin-developer/nano-vaadin.git
+      scm:git:https://github.com/Nano-Vaadin-Demos/nano-vaadin.git
     </connection>
     <developerConnection>
-      scm:git:https://github.com/vaadin-developer/nano-vaadin
+      scm:git:https://github.com/Nano-Vaadin-Demos/nano-vaadin
     </developerConnection>
     <tag>HEAD</tag>
   </scm>
@@ -63,7 +63,7 @@
   <issueManagement>
     <system>Github</system>
     <url>
-      https://github.com/vaadin-developer/nano-vaadin/issues
+      https://github.com/Nano-Vaadin-Demos/nano-vaadin/issues
     </url>
   </issueManagement>
   <licenses>
@@ -82,6 +82,9 @@
   </modules>
 
   <properties>
+    <deploy-repo-url>http://repo.sven-ruppert.de/repository/maven-releases/</deploy-repo-url>
+    <deploy-repo-snapshots-url>http://repo.sven-ruppert.de/repository/maven-snapshots/</deploy-repo-snapshots-url>
+    
     <jdk.version>1.8</jdk.version>
     <!--Vaadin-->
     <vaadin-productionMode>false</vaadin-productionMode>
@@ -89,6 +92,32 @@
     <undertow.version>2.0.28.Final</undertow.version>
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>deploy-repo-maven</id>
+      <name>deploy-repo-maven</name>
+      <url>${deploy-repo-url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>deploy-repo-maven-snapshots</id>
+      <name>deploy-repo-maven-snapshots</name>
+      <url>${deploy-repo-snapshots-url}</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <repositories>
+    <!--    sven-ruppert-->
+    <repository>
+      <id>sven-ruppert</id>
+      <name>sven-ruppert</name>
+      <url>http://repo.sven-ruppert.de/repository/maven-public/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
 
   <dependencies>
     <!--    exclude from jar-->
