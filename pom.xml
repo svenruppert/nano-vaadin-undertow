@@ -92,7 +92,7 @@
     <!--Vaadin-->
     <vaadin-productionMode>false</vaadin-productionMode>
     <vaadin-install-nodejs>true</vaadin-install-nodejs>
-    <undertow.version>2.0.28.Final</undertow.version>
+    <undertow.version>2.0.29.Final</undertow.version>
   </properties>
 
   <distributionManagement>
@@ -118,7 +118,10 @@
       <url>${deploy-repo-url}</url>
     </repository>
     <repository>
-      <snapshots />
+      <snapshots >
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
       <id>snapshots</id>
       <name>libs-snapshot</name>
       <url>${deploy-repo-snapshots-url}</url>
