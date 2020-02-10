@@ -22,14 +22,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.rapidpm</groupId>
+    <groupId>org.rapidpm.vaadin</groupId>
     <artifactId>rapidpm-vaadin-dependencies-v14</artifactId>
-    <version>04.06.01-RPM-SNAPSHOT</version>
+    <version>05.00.00-alpha-b2</version>
   </parent>
 
   <groupId>org.rapidpm.vaadin</groupId>
   <artifactId>nano-vaadin-undertow-parent</artifactId>
-  <version>01.00.05-RPM-SNAPSHOT</version>
+  <version>01.01.00-alpha</version>
 
   <packaging>pom</packaging>
 
@@ -82,31 +82,12 @@
   </modules>
 
   <properties>
-    <deploy-repo-url>http://jfrog-repo.sven-ruppert.de:8081/artifactory/libs-release</deploy-repo-url>
-    <deploy-repo-snapshots-url>http://jfrog-repo.sven-ruppert.de:8081/artifactory/libs-snapshot</deploy-repo-snapshots-url>
-
-    <!--    <deploy-repo-url>http://repo.sven-ruppert.de/repository/maven-releases/</deploy-repo-url>-->
-    <!--    <deploy-repo-snapshots-url>http://repo.sven-ruppert.de/repository/maven-snapshots/</deploy-repo-snapshots-url>-->
-    
     <jdk.version>1.8</jdk.version>
     <!--Vaadin-->
     <vaadin-productionMode>false</vaadin-productionMode>
     <vaadin-install-nodejs>true</vaadin-install-nodejs>
     <undertow.version>2.0.29.Final</undertow.version>
   </properties>
-
-  <distributionManagement>
-    <repository>
-      <id>deploy-repo-maven</id>
-      <name>deploy-repo-maven</name>
-      <url>${deploy-repo-url}</url>
-    </repository>
-    <snapshotRepository>
-      <id>deploy-repo-maven-snapshots</id>
-      <name>deploy-repo-maven-snapshots</name>
-      <url>${deploy-repo-snapshots-url}</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <repositories>
     <repository>
@@ -115,16 +96,17 @@
       </snapshots>
       <id>central</id>
       <name>libs-release</name>
-      <url>${deploy-repo-url}</url>
+      <!--      <url>${deploy-repo-url}</url>-->
+      <url>http://jfrog-repo.sven-ruppert.de:8081/artifactory/libs-release</url>
     </repository>
     <repository>
-      <snapshots >
+      <snapshots>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>
       </snapshots>
       <id>snapshots</id>
       <name>libs-snapshot</name>
-      <url>${deploy-repo-snapshots-url}</url>
+      <url>http://jfrog-repo.sven-ruppert.de:8081/artifactory/libs-snapshot</url>
     </repository>
   </repositories>
   <pluginRepositories>
@@ -134,13 +116,17 @@
       </snapshots>
       <id>central</id>
       <name>libs-release</name>
-      <url>${deploy-repo-url}</url>
+      <url>http://jfrog-repo.sven-ruppert.de:8081/artifactory/libs-release</url>
+      <!--      <url>${deploy-repo-url}</url>-->
     </pluginRepository>
     <pluginRepository>
-      <snapshots />
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
       <id>snapshots</id>
       <name>libs-snapshot</name>
-      <url>${deploy-repo-snapshots-url}</url>
+      <url>http://jfrog-repo.sven-ruppert.de:8081/artifactory/libs-snapshot</url>
     </pluginRepository>
   </pluginRepositories>
 
