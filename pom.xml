@@ -38,15 +38,15 @@
     <name>Vaadin</name>
     <url>http://www.vaadin.com</url>
   </organization>
-  <url>https://github.com/Nano-Vaadin-Demos/nano-vaadin</url>
+  <url>https://github.com/Nano-Vaadin-Demos/nano-vaadin-undertow-undertow</url>
 
   <scm>
-    <url>https://github.com/Nano-Vaadin-Demos/nano-vaadin</url>
+    <url>https://github.com/Nano-Vaadin-Demos/nano-vaadin-undertow</url>
     <connection>
-      scm:git:https://github.com/Nano-Vaadin-Demos/nano-vaadin.git
+      scm:git:https://github.com/Nano-Vaadin-Demos/nano-vaadin-undertow-undertow.git
     </connection>
     <developerConnection>
-      scm:git:https://github.com/Nano-Vaadin-Demos/nano-vaadin
+      scm:git:https://github.com/Nano-Vaadin-Demos/nano-vaadin-undertow-undertow.git
     </developerConnection>
     <tag>HEAD</tag>
   </scm>
@@ -63,7 +63,7 @@
   <issueManagement>
     <system>Github</system>
     <url>
-      https://github.com/Nano-Vaadin-Demos/nano-vaadin/issues
+      https://github.com/Nano-Vaadin-Demos/nano-vaadin-undertow/issues
     </url>
   </issueManagement>
   <licenses>
