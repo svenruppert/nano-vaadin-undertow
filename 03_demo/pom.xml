@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.rapidpm.vaadin</groupId>
     <artifactId>nano-vaadin-undertow-parent</artifactId>
-    <version>01.01.01</version>
+    <version>01.01.01-69</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
