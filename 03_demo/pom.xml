@@ -23,7 +23,7 @@
     <parent>
         <groupId>com.svenruppert</groupId>
         <artifactId>nano-vaadin-undertow-parent</artifactId>
-        <version>03.00.00</version>
+        <version>03.00.01-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
