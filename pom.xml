@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>nano-vaadin-undertow-parent</artifactId>
-    <version>03.00.00-SNAPSHOT</version>
+    <version>03.00.00</version>
 
     <packaging>pom</packaging>
 
