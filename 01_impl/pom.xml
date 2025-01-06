@@ -21,15 +21,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
-    <groupId>org.rapidpm.vaadin</groupId>
-    <artifactId>nano-vaadin-undertow-parent</artifactId>
-    <version>01.01.01</version>
+      <groupId>com.svenruppert</groupId>
+      <artifactId>nano-vaadin-undertow-parent</artifactId>
+      <version>03.00.00-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>nano-vaadin-undertow</artifactId>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-server</artifactId>
+        </dependency>
+    </dependencies>
   <build>
     <plugins>
       <plugin>
@@ -48,7 +55,7 @@
                     implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
-                    <Main-Class>org.rapidpm.vaadin.nano.CoreUIServiceJava</Main-Class>
+                    <Main-Class>com.svenruppert.vaadin.nano.CoreUIServiceJava</Main-Class>
                   </manifestEntries>
                 </transformer>
               </transformers>

@@ -20,108 +20,104 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <parent>
-    <groupId>org.rapidpm.vaadin</groupId>
-    <artifactId>nano-vaadin-undertow-parent</artifactId>
-    <version>01.01.01</version>
-  </parent>
+    <parent>
+        <groupId>com.svenruppert</groupId>
+        <artifactId>nano-vaadin-undertow-parent</artifactId>
+        <version>03.00.00-SNAPSHOT</version>
+    </parent>
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>nano-vaadin-undertow-demo</artifactId>
+    <artifactId>nano-vaadin-undertow-demo</artifactId>
 
-  <!-- Just to disable any accidental deployment to maven.central -->
-  <distributionManagement>
-    <repository>
-      <id>localhost</id>
-      <url>file://${basedir}/target/repo/</url>
-    </repository>
-    <snapshotRepository>
-      <id>localhost</id>
-      <url>file://${basedir}/target/snapshot-repo/</url>
-    </snapshotRepository>
-  </distributionManagement>
+    <!-- Just to disable any accidental deployment to maven.central -->
+    <distributionManagement>
+        <repository>
+            <id>localhost</id>
+            <url>file://${basedir}/target/repo/</url>
+        </repository>
+        <snapshotRepository>
+            <id>localhost</id>
+            <url>file://${basedir}/target/snapshot-repo/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.rapidpm.vaadin</groupId>
-      <artifactId>nano-vaadin-undertow</artifactId>
-      <version>${project.version}</version>
-    </dependency>
 
-    <!--For Core Vaadin Components-->
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-lumo-theme</artifactId>
-    </dependency>
-    <!--    Flow Components that are used-->
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-button-flow</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-ordered-layout-flow</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-app-layout-flow</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-tabs-flow</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-grid-flow</artifactId>
-    </dependency>
+    <properties>
+        <vaadin.productionMode>false</vaadin.productionMode>
+    </properties>
 
-<!--    external -->
-    <dependency>
-      <groupId>com.github.appreciated</groupId>
-      <artifactId>vaadin-css-grid</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>com.vaadin</groupId>
-          <artifactId>vaadin-core</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.svenruppert</groupId>
+            <artifactId>nano-vaadin-undertow</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
-  </dependencies>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-server</artifactId>
+        </dependency>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>com.vaadin</groupId>
-        <artifactId>vaadin-maven-plugin</artifactId>
-        <version>${vaadin-v14.version}</version>
-      </plugin>
+        <!--        Vaadin Flow related-->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-core</artifactId>
+            <exclusions>
+                <!--                <exclusion>-->
+                <!--                    <groupId>com.vaadin</groupId>-->
+                <!--                    <artifactId>vaadin-dev</artifactId>-->
+                <!--                </exclusion>-->
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>copilot</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>copilot-project</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>hilla-dev</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>flow-react</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <finalName>vaadin-app</finalName>
-              <transformers>
-                <transformer
-                    implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <manifestEntries>
-                    <Main-Class>org.rapidpm.vaadin.nano.CoreUIServiceJava</Main-Class>
-                  </manifestEntries>
-                </transformer>
-              </transformers>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>vaadin-app</finalName>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>com.svenruppert.vaadin.nano.CoreUIServiceJava</Main-Class>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
