@@ -141,6 +141,8 @@
                         <licenseSet>
                             <excludes>
                                 <exclude>**/README</exclude>
+                                <exclude>**/.dockerignore</exclude>
+                                <exclude>**/Procfile</exclude>
                                 <exclude>src/main/frontend/**</exclude>
                             </excludes>
                         </licenseSet>
