@@ -86,7 +86,7 @@
         <vaadin-productionMode>false</vaadin-productionMode>
         <vaadin-install-nodejs>true</vaadin-install-nodejs>
 
-        <undertow.version>2.3.15.Final</undertow.version>
+        <undertow.version>2.3.18.Final</undertow.version>
     </properties>
 
     <dependencies>
