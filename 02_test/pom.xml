@@ -19,29 +19,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <groupId>com.svenruppert</groupId>
-    <artifactId>nano-vaadin-undertow-parent</artifactId>
-    <version>03.00.01-SNAPSHOT</version>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.svenruppert</groupId>
+        <artifactId>nano-vaadin-undertow-parent</artifactId>
+        <version>03.00.01</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>nano-vaadin-undertow-test</artifactId>
+    <artifactId>nano-vaadin-undertow-test</artifactId>
 
-  <!-- Just to disable any accidental deployment to maven.central -->
-  <distributionManagement>
-    <repository>
-      <id>localhost</id>
-      <url>file://${basedir}/target/repo/</url>
-    </repository>
-    <snapshotRepository>
-      <id>localhost</id>
-      <url>file://${basedir}/target/snapshot-repo/</url>
-    </snapshotRepository>
-  </distributionManagement>
+    <!-- Just to disable any accidental deployment to maven.central -->
+    <distributionManagement>
+        <repository>
+            <id>localhost</id>
+            <url>file://${basedir}/target/repo/</url>
+        </repository>
+        <snapshotRepository>
+            <id>localhost</id>
+            <url>file://${basedir}/target/snapshot-repo/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
-  <build>
-
-  </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

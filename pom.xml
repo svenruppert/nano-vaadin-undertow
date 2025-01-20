@@ -24,11 +24,11 @@
     <parent>
         <groupId>com.svenruppert</groupId>
         <artifactId>dependencies-for-flow</artifactId>
-        <version>06.00.01</version>
+        <version>06.00.02</version>
     </parent>
 
     <artifactId>nano-vaadin-undertow-parent</artifactId>
-    <version>03.00.01-SNAPSHOT</version>
+    <version>03.00.01</version>
 
     <packaging>pom</packaging>
 
@@ -142,8 +142,9 @@
                             <excludes>
                                 <exclude>**/README</exclude>
                                 <exclude>**/.dockerignore</exclude>
+                                <exclude>**/**js.map</exclude>
                                 <exclude>**/Procfile</exclude>
-                                <exclude>src/main/frontend/**</exclude>
+                                <exclude>src/main/frontend/generated/**</exclude>
                             </excludes>
                         </licenseSet>
                     </licenseSets>
